@@ -1,0 +1,22 @@
+* * {
+  box-model: border-box;
+}
+#target {
+  width: 500px;
+}
+.row {
+  padding-top: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.row > input, .row > select
+{
+  margin-left: 5px;
+  width: 50%;
+}
+
+.row > div {
+  width: 50%;
+  text-align: right;
+}

@@ -1,2 +1,4 @@
 # ddev-gitpod-launcher
-Launch any web project in gitpod using ddev
+Launch and develop any web project in gitpod using ddev.
+
+
