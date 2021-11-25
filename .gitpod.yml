@@ -13,8 +13,8 @@ tasks:
       DDEV_ARTIFACTS=${DDEV_ARTIFACTS:-https://github.com/drud/d9simple-artifacts}
       git clone ${DDEV_ARTIFACTS} "/tmp/${DDEV_ARTIFACTS##*/}"
       reponame=${DDEV_REPO##*/}
-      mkdir /workspace/${reponame} && cd /workspace/${reponame}
-      git clone ${DDEV_REPO} --branch=${DDEV_BRANCH} .
+      git clone ${DDEV_REPO} --branch=${DDEV_BRANCH} ${reponame}
+      cd ${reponame}
       if [ ! -f .ddev/config.yaml ]; then
         ddev config --auto
       fi
