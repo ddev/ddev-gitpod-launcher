@@ -13,21 +13,23 @@ tasks:
         git clone ${DDEV_ARTIFACTS} "/tmp/${DDEV_ARTIFACTS##*/}"
       fi
       reponame=${DDEV_REPO##*/}
-      set -x
       git clone ${DDEV_REPO} ${GITPOD_REPO_ROOT}/${reponame}
-      cd ${GITPOD_REPO_ROOT}/${reponame}
-      if [ ! -f .ddev/config.yaml ]; then
-        ddev config --auto
+      if [ -d ${GITPOD_REPO_ROOT}/${reponame} ]; then
+        cd ${GITPOD_REPO_ROOT}/${reponame}
+        if [ ! -f .ddev/config.yaml ]; then
+          ddev config --auto
+        fi
+        printf "host_webserver_port: 8080\nhost_https_port: 2222\nhost_db_port: 3306\nhost_mailhog_port: 8025\nhost_phpmyadmin_port: 8036\nbind_all_interfaces: true\n" >.ddev/config.gitpod.yaml
+        ddev stop -a
+        ddev start -y
+        if [ ! -z "${DDEV_ARTIFACTS:-}" ]; then
+          ddev import-db --src=/tmp/${DDEV_ARTIFACTS##*/}/db.sql.gz
+          ddev import-files --src=/tmp/${DDEV_ARTIFACTS##*/}/files.tgz
+        fi
+        gp await-port 8080 && sleep 1 && gp preview $(gp url 8080)
+      else
+        echo "Failed to clone ${DDEV_REPO}, not starting project"
       fi
-      set +x
-      printf "host_webserver_port: 8080\nhost_https_port: 2222\nhost_db_port: 3306\nhost_mailhog_port: 8025\nhost_phpmyadmin_port: 8036\nbind_all_interfaces: true\n" >.ddev/config.gitpod.yaml
-      ddev stop -a
-      ddev start -y
-      if [ ! -z "${DDEV_ARTIFACTS:-}" ]; then
-        ddev import-db --src=/tmp/${DDEV_ARTIFACTS##*/}/db.sql.gz
-        ddev import-files --src=/tmp/${DDEV_ARTIFACTS##*/}/files.tgz
-      fi
-      gp await-port 8080 && sleep 1 && gp preview $(gp url 8080)
 
 vscode:
   extensions:
