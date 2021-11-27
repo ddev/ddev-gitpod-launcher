@@ -21,8 +21,9 @@ document.body.onload = () => {
       // link.textContent = urlString;
     })
   }
+  computeString();
   document.getElementById('target').querySelectorAll('[name]').forEach((element) => {
-    element.addEventListener('focus', (e) => {
+    element.addEventListener('change', (e) => {
       computeString();
     })
   })
