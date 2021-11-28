@@ -9,9 +9,8 @@ tasks:
     command: |
       export DDEV_NONINTERACTIVE=true
       DDEV_REPO=${DDEV_REPO:-https://github.com/drud/d9simple}
-      if [ ! -z "${DDEV_ARTIFACTS:-}" ]; then
-        git clone ${DDEV_ARTIFACTS} "/tmp/${DDEV_ARTIFACTS##*/}"
-      fi
+      DDEV_ARTIFACTS=${DDEV_REPO}-artifacts
+      git clone ${DDEV_ARTIFACTS} "/tmp/${DDEV_ARTIFACTS##*/}" || true
       reponame=${DDEV_REPO##*/}
       git clone ${DDEV_REPO} ${GITPOD_REPO_ROOT}/${reponame}
       if [ -d ${GITPOD_REPO_ROOT}/${reponame} ]; then
@@ -22,7 +21,7 @@ tasks:
         printf "host_webserver_port: 8080\nhost_https_port: 2222\nhost_db_port: 3306\nhost_mailhog_port: 8025\nhost_phpmyadmin_port: 8036\nbind_all_interfaces: true\n" >.ddev/config.gitpod.yaml
         ddev stop -a
         ddev start -y
-        if [ ! -z "${DDEV_ARTIFACTS:-}" ]; then
+        if [ -d "/tmp/${DDEV_ARTIFACTS##*/}" ]; then
           ddev import-db --src=/tmp/${DDEV_ARTIFACTS##*/}/db.sql.gz
           ddev import-files --src=/tmp/${DDEV_ARTIFACTS##*/}/files.tgz
         fi
