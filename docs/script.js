@@ -1,7 +1,6 @@
 document.body.onload = () => {
   const computeString = () => {
     let values = {};
-    generator = document.getElementById("generator").value
     document.getElementById('target').querySelectorAll('[name]').forEach((element) => {
       switch (element.getAttribute('type')) {
         default:
@@ -15,7 +14,7 @@ document.body.onload = () => {
         }
         urlString += encodeURIComponent(key)+'='+encodeURIComponent(values[key]);
       });
-      urlString += ",/" +generator
+      urlString += ",/" + window.location.href
       const link = document.getElementById('computedUrl');
       link.setAttribute('href', urlString);
       // link.textContent = urlString;
