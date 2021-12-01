@@ -1,7 +1,6 @@
 document.body.onload = () => {
   const computeString = () => {
     let values = {};
-    generator = document.getElementById("generator").value
     document.getElementById('target').querySelectorAll('[name]').forEach((element) => {
       switch (element.getAttribute('type')) {
         default:
@@ -15,7 +14,12 @@ document.body.onload = () => {
         }
         urlString += encodeURIComponent(key)+'='+encodeURIComponent(values[key]);
       });
-      urlString += ",/" +generator
+      
+      
+      const owner = window.location.host.split('.')[0]
+      const baseRepo = `https://github.com/` + owner + window.location.pathname
+      urlString += "/" + baseRepo
+      
       const link = document.getElementById('computedUrl');
       link.setAttribute('href', urlString);
       // link.textContent = urlString;
