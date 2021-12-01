@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eu 
+
 # Set up a given DDEV_REPO repository in gitpod (default to d9simple)
 # Run composer install if there's a composer.json
 # Import artifacts if there's a ${DDEV_REPO}-artifacts repository that can be checked out
@@ -12,12 +14,13 @@ if [ -d ${GITPOD_REPO_ROOT}/${reponame} ]; then
   "$GITPOD_REPO_ROOT"/.gitpod/setup_vscode_git.sh
   cd ${GITPOD_REPO_ROOT}/${reponame}
   # Temporarily use an empty config.yaml to get ddev to use defaults
-  # so we can do composer install
-  if [ ! -f .ddev/config.yaml ]; then
-    mkdir -p .ddev && touch .ddev/config.yaml
-  fi
-  # If there's a composer.json, do composer install
+  # so we can do composer install. If there's already one there, 
+  # this does no harm.
+  mkdir -p .ddev && touch .ddev/config.yaml
+
+  # If there's a composer.json, do `ddev composer install` (which auto-starts projct)
   if [ -f composer.json ]; then
+    ddev start
     ddev composer install
   fi
   # Now that composer install has been done, if we were using an empty
