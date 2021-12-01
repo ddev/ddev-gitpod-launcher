@@ -8,6 +8,7 @@ tasks:
       ddev delete -Oy tmp
     command: |
       export DDEV_NONINTERACTIVE=true
+      cd ${GITPOD_REPO_ROOT}
       .gitpod/start_repo.sh
 
 vscode:
