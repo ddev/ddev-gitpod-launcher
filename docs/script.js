@@ -14,7 +14,12 @@ document.body.onload = () => {
         }
         urlString += encodeURIComponent(key)+'='+encodeURIComponent(values[key]);
       });
-      urlString += ",/" + window.location.href
+      
+      
+      const owner = window.location.host.split('.')[0]
+      const baseRepo = `https://github.com/` + owner + window.location.pathname
+      urlString += "/" + baseRepo
+      
       const link = document.getElementById('computedUrl');
       link.setAttribute('href', urlString);
       // link.textContent = urlString;
