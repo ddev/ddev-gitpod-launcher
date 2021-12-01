@@ -14,6 +14,7 @@ tasks:
       reponame=${DDEV_REPO##*/}
       git clone ${DDEV_REPO} ${GITPOD_REPO_ROOT}/${reponame}
       if [ -d ${GITPOD_REPO_ROOT}/${reponame} ]; then
+        "$GITPOD_REPO_ROOT"/.gitpod/setup.sh
         cd ${GITPOD_REPO_ROOT}/${reponame}
         if [ ! -f .ddev/config.yaml ]; then
           ddev config --auto
@@ -29,7 +30,6 @@ tasks:
       else
         echo "Failed to clone ${DDEV_REPO}, not starting project"
       fi
-      .gitpod/setup.sh
 
 vscode:
   extensions:
