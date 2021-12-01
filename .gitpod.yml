@@ -29,6 +29,7 @@ tasks:
       else
         echo "Failed to clone ${DDEV_REPO}, not starting project"
       fi
+      .gitpod/setup.sh
 
 vscode:
   extensions:
