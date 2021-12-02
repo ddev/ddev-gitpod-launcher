@@ -1,22 +1,89 @@
-* * {
-  box-model: border-box;
+:root {
+  --blue: #4223e5;
+  --bg-body: #f5f4f4;
+  --bg-button: #f9f9f9;
+  --bg-footer: #e9e9e9;
 }
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  text-rendering: optimizeSpeed;
+  background: var(--bg-body);
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 100%;
+  line-height: 1.5;
+}
+
+h1 {
+  margin: 0;
+}
+
+h4 {
+  margin: 0;
+}
+
+.wrapper {
+  max-width: 600px;
+  margin: 60px auto;
+  padding-bottom: 200px;
+  box-shadow: 0 0 4px #ddd;
+  padding: 40px;
+  border-radius: 20px;
+}
+
 #target {
-  width: 700px;
-}
-.row {
-  padding-top: 5px;
-  display: flex;
-  flex-direction: row;
+  margin-top: 60px;
 }
 
-.row > input, .row > select
-{
-  margin-left: 5px;
-  width: 50%;
+input {
+  display: block;
+  padding: 10px;
+  width: 100%;
+  margin: 5px 0 20px 0;
 }
 
-.row > div {
-  width: 50%;
-  text-align: right;
+.button {
+  display: inline-block;
+  margin: 20px 0;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all .2s;
+  background: url(https://www.gitpod.io/svg/media-kit/logo-mark.svg) no-repeat 10px center var(--bg-button);
+  background-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 15px 20px 15px 45px;
+  text-decoration: none;
+  box-shadow: 0 2px 3px 0 #ccc;
+  color: #2e2d29;
+}
+
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--bg-footer);
+}
+
+footer p {
+  margin: 0 0 0.5em 0;
+}
+
+footer a {
+  text-decoration: none;
+  color: var(--blue);
+}
+
+.footer {
+  text-align: center;
+  margin: 20px;
+  font-size: 0.9rem;
 }
