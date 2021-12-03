@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>ddev-gitpod-launcher form</title>
-  <link rel="stylesheet" href="./style.css">
 
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<div id="target">
-  <div class='row'>
-    <div>Code Git Repository</div><input name='DDEV_REPO' value='https://github.com/drud/d9simple'>
-  </div>
-</div>
+  <head>
+    <meta charset="UTF-8">
+    <title>ddev-gitpod-launcher form</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
 
-<div style='height: 15px'></div>
-<a id='computedUrl' target="_blank" href=''>Link to run in gitpod.io</a>
-</div>
-<!-- partial -->
+  <body>
+
+    <div class="wrapper">
+
+      <h1>ddev Gitpod launcher</h1>
+
+      <h4>Launch and develop any web project in gitpod using ddev!</h4>
+
+      <div id="target">
+        <div class='form'>
+          <label>Enter a git repository</label>
+          <input name='DDEV_REPO' placeholder="https://github.com/drud/d9simple" value='https://github.com/drud/d9simple'>
+          <a id='computedUrl' rel="nofollow noopener noreferrer" class="button" target="_blank" href=''>Open in Gitpod</a>
+        </div>
+      </div>
+
+    </div>
+
+  <footer>
+      <div class="footer">
+        <p>This project is not affiliated with <a href="https://www.gitpod.io" target="_blank">Gitpod.io</a></p>
+        <p>Source code: <a href="https://github.com/drud/ddev-gitpod-launcher" target="_blank">github.com/drud/ddev-gitpod-launcher</a></p>
+      </div>
+    </footer>
+
   <script  src="./script.js"></script>
-
 </body>
 </html>
