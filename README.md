@@ -7,3 +7,6 @@ Launch and develop any web project in gitpod using ddev.
    * For future use, you may want to implement a `ddev pull` integration, for example for Acquia or Pantheon or Platform.sh or any other of the example [providers](https://github.com/drud/ddev/tree/master/pkg/ddevapp/dotddev_assets/providers) (see [docs](https://ddev.readthedocs.io/en/latest/users/providers/provider-introduction/)). The git technique is used here because you may not have any other initial way to get database and files into gitpod until you set something up.
 
 Go to [DDEV gitpod launcher](https://drud.github.io/ddev-gitpod-launcher/) to launch any website project and edit and develop it in gitpod.
+
+* If the project has a composer.json, the launcher will do a `ddev composer install`
+* If the project has a .ddev/config.yaml, it will be respected, otherwise a default will be auto-generated.
