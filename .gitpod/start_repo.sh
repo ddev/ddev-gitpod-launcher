@@ -33,12 +33,12 @@ if [ -d ${GITPOD_REPO_ROOT}/${reponame} ]; then
   ddev stop -a
   ddev start -y
   if [ -d "/tmp/${DDEV_ARTIFACTS##*/}" ]; then
-    if [ -f /tmp/${DDEV_ARTIFACTS##*/}/db.sql.gz ]; then
+    if [ -f "/tmp/${DDEV_ARTIFACTS##*/}/db.sql.gz" ]; then
       ddev import-db --src=/tmp/${DDEV_ARTIFACTS##*/}/db.sql.gz
     else
       echo "No db.sql.gz was provided in /tmp/${DDEV_ARTIFACTS##*/}"
     fi
-    if [ -f ${DDEV_ARTIFACTS##*/}/files.tgz ]; then
+    if [ -f "/tmp/${DDEV_ARTIFACTS##*/}/files.tgz" ]; then
       ddev import-files --src=/tmp/${DDEV_ARTIFACTS##*/}/files.tgz
     else
       echo "No files.tgz was provided in /tmp/${DDEV_ARTIFACTS##*/}"
