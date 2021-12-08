@@ -22,7 +22,6 @@ document.body.onload = () => {
       
       const link = document.getElementById('computedUrl');
       link.setAttribute('href', urlString);
-      // link.textContent = urlString;
     })
   }
   const updateArtifacts = () => {
