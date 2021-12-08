@@ -8,7 +8,7 @@ set -eu
 export DDEV_REPO=${DDEV_REPO:-https://github.com/drud/d9simple}
 echo "Checking out repository ${DDEV_REPO}"
 DEFAULT_ARTIFACTS="${DDEV_REPO}-artifacts"
-export DDEV_ARTIFACTS=${DDEV_ARTIFACTS:$DEFAULT_ARTIFACTS}
+export DDEV_ARTIFACTS=${DDEV_ARTIFACTS:-$DEFAULT_ARTIFACTS}
 echo "Attempting to get artifacts from ${DDEV_ARTIFACTS}"
 git clone ${DDEV_ARTIFACTS} "/tmp/${DDEV_ARTIFACTS##*/}" || echo "Could not check out artifacts repo ${DDEV_ARTIFACTS}"
 reponame=${DDEV_REPO##*/}
