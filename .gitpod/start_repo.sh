@@ -6,7 +6,8 @@ set -eu
 # Run composer install if there's a composer.json
 # Import artifacts if there's a ${DDEV_REPO}-artifacts repository that can be checked out
 export DDEV_REPO=${DDEV_REPO:-https://github.com/drud/d9simple}
-DDEV_ARTIFACTS=${DDEV_ARTIFACTS:${DDEV_REPO}-artifacts}
+DEFAULT_ARTIFACTS="${DDEV_REPO}-artifacts"
+export DDEV_ARTIFACTS=${DDEV_ARTIFACTS:$DEFAULT_ARTIFACTS}
 git clone ${DDEV_ARTIFACTS} "/tmp/${DDEV_ARTIFACTS##*/}" || true
 reponame=${DDEV_REPO##*/}
 git clone ${DDEV_REPO} ${GITPOD_REPO_ROOT}/${reponame}
