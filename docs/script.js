@@ -25,9 +25,16 @@ document.body.onload = () => {
       // link.textContent = urlString;
     })
   }
+  const updateArtifacts = () => {
+    sourceField = document.getElementById("ddev-repo")
+    artifactsField = document.getElementById("ddev-artifacts")
+    artifactsField.value = sourceField.value + "-artifacts"
+  }
+  updateArtifacts();
   computeString();
   document.getElementById('target').querySelectorAll('[name]').forEach((element) => {
     element.addEventListener('change', (e) => {
+      updateArtifacts();
       computeString();
     })
   })
