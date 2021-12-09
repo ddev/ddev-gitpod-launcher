@@ -9,6 +9,7 @@ export DDEV_REPO=${DDEV_REPO:-https://github.com/drud/d9simple}
 DDEV_ARTIFACTS=${DDEV_REPO}-artifacts
 git clone ${DDEV_ARTIFACTS} "/tmp/${DDEV_ARTIFACTS##*/}" || true
 reponame=${DDEV_REPO##*/}
+reponame="${reponame//_/-}"
 git clone ${DDEV_REPO} ${GITPOD_REPO_ROOT}/${reponame}
 if [ -d ${GITPOD_REPO_ROOT}/${reponame} ]; then
   "$GITPOD_REPO_ROOT"/.gitpod/setup_vscode_git.sh
