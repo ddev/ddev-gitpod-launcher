@@ -9,6 +9,7 @@ export DDEV_REPO=${DDEV_REPO:-https://github.com/drud/d9simple}
 DDEV_ARTIFACTS=${DDEV_REPO}-artifacts
 git clone ${DDEV_ARTIFACTS} "/tmp/${DDEV_ARTIFACTS##*/}" || true
 reponame=${DDEV_REPO##*/}
+clean_reponame="${reponame//_/-}"
 git clone ${DDEV_REPO} ${GITPOD_REPO_ROOT}/${reponame}
 if [ -d ${GITPOD_REPO_ROOT}/${reponame} ]; then
   "$GITPOD_REPO_ROOT"/.gitpod/setup_vscode_git.sh
@@ -26,7 +27,7 @@ if [ -d ${GITPOD_REPO_ROOT}/${reponame} ]; then
   # Now that composer install has been done, if we were using an empty
   # .ddev/config.yaml, we'll do a real ddev config
   if [ ! -s .ddev/config.yaml ]; then
-    ddev config --auto
+    ddev config --auto --project-name="${clean_reponame}"
   fi
   # This won't be required in ddev v1.18.2+
   printf "host_webserver_port: 8080\nhost_https_port: 2222\nhost_db_port: 3306\nhost_mailhog_port: 8025\nhost_phpmyadmin_port: 8036\nbind_all_interfaces: true\n" >.ddev/config.gitpod.yaml
