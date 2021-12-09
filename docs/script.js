@@ -1,5 +1,5 @@
 document.body.onload = () => {
-  const computeLink = () => {
+  const computeString = () => {
     let values = {};
     document.getElementById('target').querySelectorAll('[name]').forEach((element) => {
       switch (element.getAttribute('type')) {
@@ -14,22 +14,21 @@ document.body.onload = () => {
         }
         urlString += encodeURIComponent(key)+'='+encodeURIComponent(values[key]);
       });
-
+      
+      
       const owner = window.location.host.split('.')[0]
       const baseRepo = `https://github.com/` + owner + window.location.pathname
       urlString += "/" + baseRepo
-
-      document.getElementById('computedUrl').setAttribute('href', urlString);
-      document.getElementById('ddev-link').innerHTML = urlString;
+      
+      const link = document.getElementById('computedUrl');
+      link.setAttribute('href', urlString);
+      // link.textContent = urlString;
     })
   }
-
-  computeLink();
-
+  computeString();
   document.getElementById('target').querySelectorAll('[name]').forEach((element) => {
     element.addEventListener('change', (e) => {
-      computeLink();
+      computeString();
     })
   })
-
 }
