@@ -1,5 +1,5 @@
 document.body.onload = () => {
-  const computeString = () => {
+  const computeLink = () => {
     let values = {};
     document.getElementById('target').querySelectorAll('[name]').forEach((element) => {
       switch (element.getAttribute('type')) {
@@ -20,15 +20,24 @@ document.body.onload = () => {
       const baseRepo = `https://github.com/` + owner + window.location.pathname
       urlString += "/" + baseRepo
       
-      const link = document.getElementById('computedUrl');
-      link.setAttribute('href', urlString);
-      // link.textContent = urlString;
+      document.getElementById('computedUrl').setAttribute('href', urlString);
+      document.getElementById('ddev-link').innerHTML = urlString;
     })
   }
-  computeString();
+  const updateArtifacts = () => {
+    sourceField = document.getElementById("ddev-repo")
+    artifactsField = document.getElementById("ddev-artifacts")
+    artifactsField.value = sourceField.value + "-artifacts"
+  }
+  updateArtifacts();
+  computeLink();
   document.getElementById('target').querySelectorAll('[name]').forEach((element) => {
     element.addEventListener('change', (e) => {
-      computeString();
+      computeLink();
     })
   })
+  document.getElementById('ddev-repo').addEventListener('change', (e) => {
+      updateArtifacts();
+    })
+
 }
