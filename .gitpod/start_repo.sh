@@ -12,7 +12,7 @@ export DDEV_ARTIFACTS=${DDEV_ARTIFACTS:-$DEFAULT_ARTIFACTS}
 echo "Attempting to get artifacts from ${DDEV_ARTIFACTS}"
 git clone ${DDEV_ARTIFACTS} "/tmp/${DDEV_ARTIFACTS##*/}" || echo "Could not check out artifacts repo ${DDEV_ARTIFACTS}"
 reponame=${DDEV_REPO##*/}
-clean_reponame="${reponame//_/-}"
+reponame="${reponame//_/-}"
 git clone ${DDEV_REPO} ${GITPOD_REPO_ROOT}/${reponame}
 if [ -d ${GITPOD_REPO_ROOT}/${reponame} ]; then
   "$GITPOD_REPO_ROOT"/.gitpod/setup_vscode_git.sh
