@@ -27,7 +27,7 @@ if [ -d ${GITPOD_REPO_ROOT}/${reponame} ]; then
   # Now that composer install has been done, if we were using an empty
   # .ddev/config.yaml, we'll do a real ddev config
   if [ ! -s .ddev/config.yaml ]; then
-    ddev config --auto --project-name="${clean_reponame}"
+    ddev config --project-name="${clean_reponame}"
   fi
   # This won't be required in ddev v1.18.2+
   printf "host_webserver_port: 8080\nhost_https_port: 2222\nhost_db_port: 3306\nhost_mailhog_port: 8025\nhost_phpmyadmin_port: 8036\nbind_all_interfaces: true\n" >.ddev/config.gitpod.yaml
