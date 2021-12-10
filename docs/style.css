@@ -64,6 +64,16 @@ input {
   color: #2e2d29;
 }
 
+.code {
+  overflow-wrap: break-word;
+  width: 100%;
+  white-space: pre-wrap;
+  background: #fff;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
 
 footer {
   position: fixed;
