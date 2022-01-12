@@ -1,24 +1,33 @@
 #!/bin/bash
 
-set -eu 
+set -eu
 
 # Set up a given DDEV_REPO repository in gitpod (default to d9simple)
 # Run composer install if there's a composer.json
-# Import artifacts if there's a ${DDEV_REPO}-artifacts repository that can be checked out
+
 export DDEV_REPO=${DDEV_REPO:-https://github.com/drud/d9simple}
-echo "Checking out repository ${DDEV_REPO}"
+# Import artifacts if there's a ${DDEV_REPO}-artifacts repository that can be checked out
 DEFAULT_ARTIFACTS="${DDEV_REPO}-artifacts"
-export DDEV_ARTIFACTS=${DDEV_ARTIFACTS:-$DEFAULT_ARTIFACTS}
+
+if [[ "${DDEV_REPO}" == *"bitbucket"* ]]; then
+  export DDEV_REPO=${DDEV_REPO/'/src/master/'/}
+  DDEV_ARTIFACTS="${DDEV_ARTIFACTS/'/src/master/'/}"
+  export DDEV_ARTIFACTS=${DDEV_ARTIFACTS:-$DEFAULT_ARTIFACTS}
+  reponame=${DDEV_REPO##*/}
+else
+  reponame=${DDEV_REPO##*/}
+  reponame="${DDEV_REPO//_/-}"
+fi
+
 echo "Attempting to get artifacts from ${DDEV_ARTIFACTS}"
 git clone ${DDEV_ARTIFACTS} "/tmp/${DDEV_ARTIFACTS##*/}" || echo "Could not check out artifacts repo ${DDEV_ARTIFACTS}"
-reponame=${DDEV_REPO##*/}
-reponame="${reponame//_/-}"
 git clone ${DDEV_REPO} ${GITPOD_REPO_ROOT}/${reponame}
+
 if [ -d ${GITPOD_REPO_ROOT}/${reponame} ]; then
   "$GITPOD_REPO_ROOT"/.gitpod/setup_vscode_git.sh
   cd ${GITPOD_REPO_ROOT}/${reponame}
   # Temporarily use an empty config.yaml to get ddev to use defaults
-  # so we can do composer install. If there's already one there, 
+  # so we can do composer install. If there's already one there,
   # this does no harm.
   mkdir -p .ddev && touch .ddev/config.yaml
 
