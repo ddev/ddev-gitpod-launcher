@@ -1,4 +1,4 @@
-image: drud/ddev-gitpod-base:20220715
+image: drud/ddev-gitpod-base:20220718
 
 tasks:
   - name: ddev-gitpod-launcher
