@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eu 
+set -eu
 
 # Set up a given DDEV_REPO repository in gitpod (default to d9simple)
 # Run composer install if there's a composer.json
@@ -18,7 +18,7 @@ if [ -d ${GITPOD_REPO_ROOT}/${reponame} ]; then
   "$GITPOD_REPO_ROOT"/.gitpod/setup_vscode_git.sh
   cd ${GITPOD_REPO_ROOT}/${reponame}
   # Temporarily use an empty config.yaml to get ddev to use defaults
-  # so we can do composer install. If there's already one there, 
+  # so we can do composer install. If there's already one there,
   # this does no harm.
   mkdir -p .ddev && touch .ddev/config.yaml
 
@@ -48,7 +48,7 @@ if [ -d ${GITPOD_REPO_ROOT}/${reponame} ]; then
       echo "No files.tgz was provided in /tmp/${DDEV_ARTIFACTS##*/}"
     fi
   fi
-  gp await-port 8080 && sleep 1 && gp preview $(gp url 8080)
+  gp ports await 8080 && sleep 1 && gp preview $(gp url 8080)
 else
   echo "Failed to clone ${DDEV_REPO}, not starting project"
 fi
