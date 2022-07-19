@@ -3,6 +3,7 @@ image: drud/ddev-gitpod-base:20220718
 tasks:
   - name: ddev-gitpod-launcher
     init: |
+      apt-get update >/dev/null && apt-get install -y ddev >/dev/null
       cd /tmp && ddev config --auto
       ddev debug download-images
       ddev delete -Oy tmp
