@@ -5,7 +5,7 @@ set -eu
 # Set up a given DDEV_REPO repository in gitpod (default to d9simple)
 # Run composer install if there's a composer.json
 # Import artifacts if there's a ${DDEV_REPO}-artifacts repository that can be checked out
-export DDEV_REPO=${DDEV_REPO:-https://github.com/drud/d9simple}
+export DDEV_REPO=${DDEV_REPO:-https://github.com/ddev/d9simple}
 echo "Checking out repository ${DDEV_REPO}"
 DEFAULT_ARTIFACTS="${DDEV_REPO}-artifacts"
 export DDEV_ARTIFACTS=${DDEV_ARTIFACTS:-$DEFAULT_ARTIFACTS}
