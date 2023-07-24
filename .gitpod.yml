@@ -1,11 +1,9 @@
-image: ddev/ddev-gitpod-base:20230512
+image: ddev/ddev-gitpod-base:20230724
 
 tasks:
   - name: ddev-gitpod-launcher
     init: |
-      cd /tmp && ddev config --auto
       ddev debug download-images
-      ddev delete -Oy tmp
     command: |
       export DDEV_NONINTERACTIVE=true
       cd ${GITPOD_REPO_ROOT}
