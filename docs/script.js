@@ -38,6 +38,7 @@ document.body.onload = () => {
   })
   document.getElementById('ddev-repo').addEventListener('change', (e) => {
       updateArtifacts();
+      computeLink();
     })
 
 }
