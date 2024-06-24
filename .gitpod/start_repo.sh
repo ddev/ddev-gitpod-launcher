@@ -31,8 +31,6 @@ if [ -d ${REPO_HOME} ]; then
   if [ ! -s .ddev/config.yaml ]; then
     ddev config --project-name="${REPO_NAME}"
   fi
-  # This won't be required in ddev v1.18.2+
-  printf "host_webserver_port: 8080\nhost_https_port: 2222\nhost_db_port: 3306\nhost_mailhog_port: 8025\nhost_phpmyadmin_port: 8036\nbind_all_interfaces: true\n" >.ddev/config.gitpod.yaml
   ddev stop -a
   ddev start -y
   if [ -d "/tmp/${DDEV_ARTIFACTS##*/}" ]; then
