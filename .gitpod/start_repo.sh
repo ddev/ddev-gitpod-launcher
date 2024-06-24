@@ -11,12 +11,12 @@ DEFAULT_ARTIFACTS="${DDEV_REPO}-artifacts"
 export DDEV_ARTIFACTS=${DDEV_ARTIFACTS:-$DEFAULT_ARTIFACTS}
 echo "Attempting to get artifacts from ${DDEV_ARTIFACTS}"
 git clone ${DDEV_ARTIFACTS} "/tmp/${DDEV_ARTIFACTS##*/}" || echo "Could not check out artifacts repo ${DDEV_ARTIFACTS}"
-reponame=${DDEV_REPO##*/}
-reponame="${reponame//_/-}"
-git clone ${DDEV_REPO} ${GITPOD_REPO_ROOT}/${reponame}
-if [ -d ${GITPOD_REPO_ROOT}/${reponame} ]; then
-  "$GITPOD_REPO_ROOT"/.gitpod/setup_vscode_git.sh
-  cd ${GITPOD_REPO_ROOT}/${reponame}
+REPO_NAME=${DDEV_REPO##*/}
+export REPO_NAME="${REPO_NAME//_/-}"
+REPO_HOME=/workspace/code
+git clone ${DDEV_REPO} ${REPO_HOME}
+if [ -d ${REPO_HOME} ]; then
+  cd ${REPO_HOME}
   # Temporarily use an empty config.yaml to get ddev to use defaults
   # so we can do composer install. If there's already one there,
   # this does no harm.
@@ -30,7 +30,7 @@ if [ -d ${GITPOD_REPO_ROOT}/${reponame} ]; then
   # Now that composer install has been done, if we were using an empty
   # .ddev/config.yaml, we'll do a real ddev config
   if [ ! -s .ddev/config.yaml ]; then
-    ddev config --project-name="${reponame}"
+    ddev config --project-name="${REPO_NAME}"
   fi
   # This won't be required in ddev v1.18.2+
   printf "host_webserver_port: 8080\nhost_https_port: 2222\nhost_db_port: 3306\nhost_mailhog_port: 8025\nhost_phpmyadmin_port: 8036\nbind_all_interfaces: true\n" >.ddev/config.gitpod.yaml
