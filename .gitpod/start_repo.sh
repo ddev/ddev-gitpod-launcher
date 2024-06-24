@@ -24,7 +24,6 @@ if [ -d ${REPO_HOME} ]; then
 
   # If there's a composer.json, do `ddev composer install` (which auto-starts projct)
   if [ -f composer.json ]; then
-    ddev start
     ddev composer install
   fi
   # Now that composer install has been done, if we were using an empty
