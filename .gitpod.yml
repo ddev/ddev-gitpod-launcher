@@ -5,6 +5,7 @@ tasks:
     before: |
       mkdir /workspace/code -p
     init: |
+      sudo apt-get update && sudo apt install -y ddev
       ddev debug download-images
     command: |
       export DDEV_NONINTERACTIVE=true
