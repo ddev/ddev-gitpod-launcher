@@ -47,7 +47,7 @@ ports:
   - port: 8080
     onOpen: ignore
   # xdebug port
-  - port: 9000
+  - port: 9003
     onOpen: ignore
   # projector port
   - port: 9999
