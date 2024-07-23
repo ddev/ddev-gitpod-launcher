@@ -51,5 +51,8 @@ ports:
   # xdebug port
   - port: 9003
     onOpen: ignore
+  # Adminer
+  - port: 9101
+    onOpen: ignore
   # projector port
   - port: 9999
