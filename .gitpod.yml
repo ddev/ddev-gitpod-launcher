@@ -48,6 +48,9 @@ ports:
   # Direct-connect ddev-webserver port that is the main port
   - port: 8080
     onOpen: ignore
+  # xhgui port
+  - port: 8142
+    onOpen: ignore
   # xdebug port
   - port: 9003
     onOpen: ignore
