@@ -28,6 +28,8 @@ ports:
     onOpen: ignore
   - port: 3306
     onOpen: ignore
+  - port: 5432
+    onOpen: ignore
   # Used by projector
   - port: 6942
     onOpen: ignore
