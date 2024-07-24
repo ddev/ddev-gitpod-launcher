@@ -57,7 +57,10 @@ ports:
   # xdebug port
   - port: 9003
     onOpen: ignore
-  # Adminer
+  # Adminer http port
+  - port: 9100
+    onOpen: ignore
+  # Adminer https port
   - port: 9101
     onOpen: ignore
   # projector port
