@@ -35,11 +35,8 @@ ports:
   # Used by projector
   - port: 6942
     onOpen: ignore
-  # Currently un-notified and unsupported mailhog http port
-  - port: 8025
-    onOpen: ignore
-  # Currently un-notified and unsupported mailhog https port
-  - port: 8026
+  # Currently un-notified and unsupported mailpit https port
+  - port: 8027
     onOpen: ignore
   # Currently un-notified and unsupported phpmyadmin http port
   - port: 8036
