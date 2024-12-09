@@ -12,6 +12,7 @@ tasks:
       export DDEV_NONINTERACTIVE=true
       ${GITPOD_REPO_ROOT}/.gitpod/start_repo.sh
       cd /workspace/code
+      unset DDEV_NONINTERACTIVE
 
 workspaceLocation: ddev-gitpod-launcher/repo.code-workspace
 
