@@ -1,4 +1,6 @@
-# ddev-gitpod-launcher
+# ddev-gitpod-launcher (archived)
+
+**Gitpod Classic has been deprecated and will be removed in April, 2025, so this repository and launcher will no longer be maintained**
 
 Launch and develop any web project in gitpod using ddev.
 
